@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>미국채 선물 → 국내 증시 영향도 분석 | 2026-06-03</title>
+<meta name="description" content="미국채 선물 동향이 환율·유가·지정학을 거쳐 KOSPI로 전이되는 영향도 분석. 채권·환율·지정학유가·국내증시 4인 에이전트 팀 통합 보고서." />
+<style>
+  :root{
+    --bg:#0b1020; --panel:#141b2e; --panel2:#1b2540; --line:#283452;
+    --txt:#e7ecf5; --mut:#9aa7c2; --acc:#5b8cff; --acc2:#7aa2ff;
+    --up:#2ecc71; --down:#ff5d6c; --warn:#ffc857; --neu:#8aa0c8;
+    --chip:#22304f;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Malgun Gothic",Segoe UI,Roboto,sans-serif;
+    background:linear-gradient(180deg,#0b1020,#0d1326 60%,#0b1020);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--acc2);text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  header{padding:54px 0 30px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--acc2);
+    background:var(--chip);border:1px solid var(--line);padding:5px 11px;border-radius:999px;margin-bottom:16px}
+  h1{font-size:clamp(26px,4.4vw,40px);line-height:1.25;margin:0 0 14px;font-weight:800;letter-spacing:-.01em}
+  .sub{color:var(--mut);font-size:15px;max-width:780px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .meta span{font-size:12.5px;color:var(--mut);background:var(--panel);border:1px solid var(--line);padding:5px 10px;border-radius:8px}
+  nav{position:sticky;top:0;z-index:20;background:rgba(11,16,32,.86);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);margin-top:24px}
+  nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 20px}
+  nav a{white-space:nowrap;font-size:13px;color:var(--mut);padding:7px 12px;border-radius:8px}
+  nav a:hover{color:var(--txt);background:var(--panel)}
+  section{padding:38px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:21px;margin:0 0 6px;font-weight:750;display:flex;align-items:center;gap:10px}
+  h2 .n{font-size:12px;color:var(--acc2);background:var(--chip);border:1px solid var(--line);
+    width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;flex:none}
+  .lead{color:var(--mut);font-size:14.5px;margin:0 0 18px}
+  .grid{display:grid;gap:14px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:760px){.g3,.g2{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card h3{margin:0 0 8px;font-size:15px}
+  .card p{margin:0;color:var(--mut);font-size:13.5px}
+  .stat{font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .tag{font-size:11.5px;padding:3px 9px;border-radius:999px;font-weight:700;display:inline-block}
+  .t-down{background:rgba(255,93,108,.14);color:var(--down);border:1px solid rgba(255,93,108,.35)}
+  .t-up{background:rgba(46,204,113,.13);color:var(--up);border:1px solid rgba(46,204,113,.32)}
+  .t-warn{background:rgba(255,200,87,.13);color:var(--warn);border:1px solid rgba(255,200,87,.32)}
+  .t-neu{background:rgba(138,160,200,.13);color:var(--neu);border:1px solid rgba(138,160,200,.3)}
+  .chain{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:18px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#cdd8f2;overflow-x:auto;white-space:pre;line-height:1.7}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px;min-width:560px}
+  .tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+  th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel2);color:var(--acc2);font-weight:700;font-size:12.5px;position:sticky;top:0}
+  tr:last-child td{border-bottom:none}
+  td strong{color:var(--txt)}
+  .prob{font-weight:800}
+  ul.clean{margin:10px 0 0;padding-left:18px;color:var(--mut);font-size:14px}
+  ul.clean li{margin:7px 0}
+  ul.clean b{color:var(--txt)}
+  .callout{background:linear-gradient(135deg,rgba(91,140,255,.12),rgba(122,162,255,.05));
+    border:1px solid rgba(91,140,255,.32);border-radius:14px;padding:18px 20px;margin-top:16px}
+  .callout b{color:#bcd0ff}
+  .bar{height:9px;border-radius:6px;background:var(--panel2);overflow:hidden;margin-top:9px;border:1px solid var(--line)}
+  .bar i{display:block;height:100%}
+  footer{padding:34px 0 60px;color:var(--mut);font-size:12.5px}
+  .disc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:12.5px;color:var(--mut);margin-top:14px}
+  .src{font-size:12px;color:var(--mut)}
+  .src a{margin-right:4px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <span class="kicker">하네스 B · 4인 에이전트 팀 통합 보고서</span>
+    <h1>미국채 선물 동향과<br/>국내 증시 영향도 분석</h1>
+    <p class="sub">미·이란 분쟁발 유가 충격이 미국채 텀프리미엄·실질금리를 끌어올려 달러 강세·원화 약세·외국인 사상 최대 순매도로 전이되는 경로를 채권·환율·지정학유가·국내증시 4개 관점으로 종합했다.</p>
+    <div class="meta">
+      <span>📅 분석 기준일 2026-06-03</span>
+      <span>⏱ 시계 3~6개월</span>
+      <span>🤖 채권·환율·지정학유가·국내증시</span>
+      <span>⚠️ 정보·교육 목적 (투자권유 아님)</span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#summary">요약</a>
+  <a href="#scenario">지수 시나리오</a>
+  <a href="#sector">업종 차별화</a>
+  <a href="#cause">전이 원인</a>
+  <a href="#ch1">외국인·환율</a>
+  <a href="#ch2">종목 쏠림</a>
+  <a href="#ch3">금리·밸류</a>
+  <a href="#monitor">모니터링</a>
+  <a href="#disc">면책</a>
+</div></nav>
+
+<main class="wrap">
+
+  <section id="summary">
+    <h2><span class="n">1</span>핵심 요약</h2>
+    <p class="lead">국내 패시브·개인이 반도체 2종목에 집중 매수로 외국인 매도를 받아내며 KOSPI는 사상 최고치를 방어 중. 그러나 이 방어는 극단적 쏠림 위에 서 있어 <b style="color:var(--txt)">지수가 버틴다는 것이 곧 안전을 의미하지 않는다.</b></p>
+    <div class="grid g3">
+      <div class="card"><h3>외국인 누적 순매도</h3><div class="stat" style="color:var(--down)">103조</div><p>YTD, 사상 최대 — 금융위기·코로나 압도</p></div>
+      <div class="card"><h3>삼성+SK하이닉스 시총 비중</h3><div class="stat" style="color:var(--warn)">50.4%</div><p>KOSPI 사상 첫 절반 돌파 (1년 전 23%)</p></div>
+      <div class="card"><h3>미 10Y 실질금리</h3><div class="stat" style="color:var(--acc2)">2.17%</div><p>15년 최고 — 성장주 밸류에이션 압박</p></div>
+    </div>
+    <div class="callout"><b>전이 사슬</b></div>
+    <div class="chain">미·이란 분쟁(호르무즈 봉쇄) ─→ 유가 급등(WTI ~$92, 4월 Brent 고점 $138)
+   ─→ 美 인플레 재점화·연준 동결 ─→ 텀프리미엄 (+)복귀 · 실질금리 2.17%(15년 최고)
+   ─→ 달러 강세 · 한미 금리차 -1.25%p ─→ 원/달러 1,518원 ─→ 외국인 KOSPI 순매도 103조(사상 최대)
+   ─→ [완충] 국내 패시브·개인이 반도체 대형주로 흡수 ─→ 지수 방어(8,801) · 쏠림·변동성 누적</div>
+  </section>
+
+  <section id="scenario">
+    <h2><span class="n">2</span>지수 시나리오 매트릭스</h2>
+    <p class="lead">하방이 상방보다 두껍고(30% vs 20%), 하방의 속도가 더 빠른 <b>비대칭</b>. 집중도 50% + 외국인 패닉 + 환율 자기강화 루프가 겹치면 하락은 빠르고 깊다.</p>
+    <div class="grid g3">
+      <div class="card">
+        <span class="tag t-neu">베이스 · 50%</span>
+        <h3 style="margin-top:10px">고변동 박스권 상단</h3>
+        <p>KOSPI 8,400~8,900 등락. 지수는 버티나 변동성 극심·시장폭 협소. 반도체 쏠림이 지수 방어, 환율 1,550 미돌파.</p>
+        <div class="bar"><i style="width:50%;background:var(--neu)"></i></div>
+      </div>
+      <div class="card">
+        <span class="tag t-down">하방 · 30%</span>
+        <h3 style="margin-top:10px">쏠림 해소·루프 악화</h3>
+        <p>금리↑·달러↑(1,550 돌파)·유가↑(호르무즈 완전봉쇄). 반도체發 급락이 집중도 50% 통해 증폭 → <b style="color:var(--down)">8,000선 하회 위험.</b></p>
+        <div class="bar"><i style="width:30%;background:var(--down)"></i></div>
+      </div>
+      <div class="card">
+        <span class="tag t-up">상방 · 20%</span>
+        <h3 style="margin-top:10px">선순환 복귀</h3>
+        <p>금리↓·달러↓(1,420~1,470)·유가↓(휴전 실질화). 외국인 순매수 전환, 성장주·낙폭과대주 주도 반등 + 시장폭 개선.</p>
+        <div class="bar"><i style="width:20%;background:var(--up)"></i></div>
+      </div>
+    </div>
+    <div class="callout"><b>지수가 버틴다 ≠ 안전</b> — 베이스에서도 헤드라인 지수는 반도체 2종목에 인질이며, 시장 폭(상승 77 vs 하락 826종목)은 이미 약세. 지수 레벨만 보면 위험을 과소평가한다.</div>
+  </section>
+
+  <section id="sector">
+    <h2><span class="n">3</span>업종 차별화 맵</h2>
+    <p class="lead">"지수 하락"으로 뭉뚱그리지 않는다. 같은 대외 충격이 업종별로 갈린다. (종목은 전이 경로 설명용 예시 — 면책 참조)</p>
+    <div class="tscroll"><table>
+      <thead><tr><th>충격 요인</th><th>수혜 업종</th><th>피해 업종</th><th>메커니즘</th></tr></thead>
+      <tbody>
+        <tr><td><strong>원화 약세</strong><br/>(1,518원)</td><td>반도체·자동차·조선<br/>(수출 대형주)</td><td>항공·여행·내수·정유</td><td>달러매출 EPS 상향 ↔ 수입원가·외화부채 부담. <em>관세가 물량 위축시 수혜 상쇄</em></td></tr>
+        <tr><td><strong>유가 급등</strong><br/>($92→$120+)</td><td>정유(양면적)·일부 조선</td><td>항공(명확)·화학(명확)·운송</td><td>원가 직격 + 원화 약세 겹쳐 항공 이중 타격</td></tr>
+        <tr><td><strong>금리 상승</strong><br/>실질 15년 최고</td><td>은행·보험</td><td>2차전지·바이오·플랫폼·전력기기</td><td>할인율↑ → 장기 현금흐름 DCF 분모 압박 → 고PER 디레이팅</td></tr>
+        <tr><td><strong>risk-off</strong><br/>외국인 이탈</td><td>배당주·저베타 방어주</td><td>고베타·외국인 보유 대형주·KOSDAQ</td><td>안전자산 도피·환차손 매도가 외국인 비중 큰 종목 직격</td></tr>
+        <tr><td><strong>반도체 쏠림</strong><br/>집중도 50%</td><td>(해소 시) 금융·배당·낙폭과대주</td><td>반도체 자신·반도체 인질 지수 ETF</td><td>집중도가 상승은 견인, 하락은 증폭 — 분산효과 부재</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>🔑 반도체의 양면성 (보고서 최대 인사이트)</b> — 반도체는 ①원화 약세=호재 ②AI·메모리 슈퍼사이클=호재이나, ③risk-off 외국인 매도=직격 ④집중도 50%로 지수 운명과 동일체. <b>수출 채산성·AI 사이클이 risk-off를 이기면 지수 방어, 지면 지수 폭락</b> — 향후 3~6개월 KOSPI 방향의 단일 최대 변수.</div>
+  </section>
+
+  <section id="cause">
+    <h2><span class="n">4</span>전이 원인 — 상류 3개 영역</h2>
+    <div class="grid g3">
+      <div class="card"><h3>📉 채권 (미국채 선물·금리)</h3>
+        <ul class="clean">
+          <li><b>베어 스티프닝·텀프리미엄 부활</b>이 본질. 2s10s +42bp 정상화는 인하 기대가 아닌 장기물 상승.</li>
+          <li>10Y 4.46%, 텀프리미엄 2023년 이후 첫 (+), 실질금리 2.17% 15년 최고.</li>
+          <li>연내 인하 10% 미만 반영 — 'higher for longer' 부활.</li>
+        </ul>
+      </div>
+      <div class="card"><h3>💱 환율 (달러·원/달러·자금)</h3>
+        <ul class="clean">
+          <li><b>역사적 디버전스</b> — KOSPI 사상 최고인데 외국인 사상 최대 매도, 원화만 약한 디커플링.</li>
+          <li>자기강화 루프: 매도→환전→원화약세→환차손→추가매도. <b>1,550원이 임계선.</b></li>
+          <li>외국인은 주식은 팔되 고캐리 국고채(4.16%)는 매수 — 비대칭.</li>
+        </ul>
+      </div>
+      <div class="card"><h3>🛢 지정학·유가 (미·이란)</h3>
+        <ul class="clean">
+          <li>2월 대이란 공습 후 <b>호르무즈 사실상 봉쇄</b>, 글로벌 원유 ~20% 차단(IEA "사상 최대").</li>
+          <li>인플레 재점화 → 연내 인하 0~1회 이연. 변동성 폭발이 핵심 리스크.</li>
+          <li>이례적으로 <b>금보다 달러·국채 선호</b> → 신흥국에 더 불리.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ch1">
+    <h2><span class="n">5</span>강조 1 — 외국인 수급·환율 연계 <span class="tag t-down" style="margin-left:6px">가장 강한 채널</span></h2>
+    <div class="chain">美10Y 텀프리미엄↑·실질 2.17%  +  유가발 risk-off·달러 강세
+        └─── 한미 금리차 -1.25%p ───┬── 원/달러 1,518원(구조적 약세)
+                                   ▼
+   외국인 환차손 우려 → KOSPI 순매도(YTD 103조, 사상 최대, 18거래일 연속)
+                                   │  ← 국내 패시브(ETF·연금)+개인(삼전닉스 53조) 흡수
+                                   ▼
+        지수 방어(8,801) BUT 매도 집중 대형주에 수급 쏠림·변동성 누적</div>
+    <ul class="clean">
+      <li><b>외국인 실질수익률 = KOSPI 수익률 − 원화 절하율.</b> 지수 사상 최고여도 원화 -10%대 절하가 달러 수익을 상쇄.</li>
+      <li><b>"엑소더스" 아닌 "기계적 리밸런싱"</b> — 외국인 보유비중은 오히려 36→40%대 상승. 국내 수급이 받아내며 붕괴 차단.</li>
+      <li><b>임계 신호:</b> 원/달러 1,550원 돌파 · 국내 패시브·개인 매수 여력 소진 · 위안화 강세 전환(완화).</li>
+    </ul>
+  </section>
+
+  <section id="ch2">
+    <h2><span class="n">6</span>강조 2 — 종목/섹터 쏠림·집중도 리스크</h2>
+    <div class="grid g2">
+      <div class="card"><h3>집중도 — 역사상 최고</h3>
+        <ul class="clean">
+          <li>삼성+SK하이닉스 = KOSPI <b>50.4%</b> (사상 첫 절반 돌파, 1년 전의 2배).</li>
+          <li>사상 최고 경신일에도 <b>상승 77 vs 하락 826종목</b> — 10종목 중 9개는 하락.</li>
+          <li>개인이 올해 삼전닉스만 ~53조 순매수 — 양측 수급 쏠림.</li>
+        </ul>
+      </div>
+      <div class="card"><h3>양날의 칼</h3>
+        <ul class="clean">
+          <li>상승 국면: 2종목이 지수 견인.</li>
+          <li>하락 전환: 2종목이 꺾이면 <b>지수 전체가 무너진다.</b></li>
+          <li>3월 risk-off 실증: 삼성 -9.9%·SK하이닉스 -11.5%·KOSPI -7.2%. 집중도 50%는 충격을 증폭.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><b>집중도 자체가 리스크 지표</b> — 분산효과가 사라진 시장에서 지수는 반도체 2종목의 함수로 수렴한다.</div>
+  </section>
+
+  <section id="ch3">
+    <h2><span class="n">7</span>강조 3 — 안전자산 선호·금리 밸류에이션 압박</h2>
+    <div class="grid g2">
+      <div class="card"><h3>경로 1 — 할인율 → 성장주 디레이팅</h3>
+        <p>美10Y 실질금리 2.17%(15년 최고)·텀프리미엄 (+)복귀가 할인율 상방을 고착. 한국 10Y도 4.16% 동반 상승 → 장기 현금흐름 비중 큰 성장주(2차전지·바이오·플랫폼·KOSDAQ) DCF 분모 직접 압박.</p>
+      </div>
+      <div class="card"><h3>경로 2 — risk-off 신흥국 이탈</h3>
+        <p>유가발 스태그플레이션형 충격 + 강달러 → 달러·미국채 도피 → 에너지 수입 신흥국(한국)은 통화·증시·채권 <b>트리플 약세</b>. 금의 안전자산 기능 약화로 자금이 달러로 직행해 더 불리.</p>
+      </div>
+    </div>
+    <div class="callout"><b>비선형 분기점</b> — 6/10 미국 5월 CPI 디스인플레 서프라이즈 또는 호르무즈 휴전 실질화만이 우호적 하방(금리↓) 시나리오를 연다.</div>
+  </section>
+
+  <section id="monitor">
+    <h2><span class="n">8</span>모니터링 지표·일정</h2>
+    <div class="tscroll"><table>
+      <thead><tr><th>지표</th><th>임계/주목 수준</th><th>의미</th></tr></thead>
+      <tbody>
+        <tr><td><strong>원/달러</strong></td><td>1,550원 돌파</td><td>루프 비선형 악화·외국인 패닉 매도 트리거</td></tr>
+        <tr><td>외국인 순매도 연속/규모</td><td>18거래일 연속·일 6조대 지속</td><td>리밸런싱 → 엑소더스 전환 감지</td></tr>
+        <tr><td>국내 패시브·개인 매수 여력</td><td>일 6조대 흡수 지속</td><td>소진 시 지수·환율 동시 충격</td></tr>
+        <tr><td>삼성+SK하이닉스 시총 비중</td><td>50.4% 추가 확대/꺾임</td><td>쏠림 심화·해소 분기점</td></tr>
+        <tr><td>상승/하락 종목 수 (breadth)</td><td>상승 77 vs 하락 826 개선</td><td>시장 폭 = 지수 건강도</td></tr>
+        <tr><td>美10Y·실질금리·텀프리미엄</td><td>10Y 4.7% 상회·실질 2.2%+</td><td>성장주 디레이팅 압력</td></tr>
+        <tr><td>WTI/Brent·기간구조</td><td>WTI $120+ 또는 백워데이션 붕괴</td><td>확전·레짐전환 신호</td></tr>
+        <tr><td><strong>6/10 美 5월 CPI / 호르무즈 봉쇄</strong></td><td>디스인플레 서프라이즈 / 완전봉쇄</td><td><strong>하방↔상방 시나리오 분기점</strong></td></tr>
+        <tr><td>위안화 (USD/CNY)</td><td>6.80 강세 전환</td><td>원화 동반 안정 → 루프 완화</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="disc">
+    <h2><span class="n">9</span>데이터 출처 · 면책</h2>
+    <p class="lead">분석 기준일 2026-06-03 / 시장 데이터 2026-06-01~06-02 종가 및 5월 말 누적. 실시간 선물 호가·당일 틱은 미확보로 종가·역산 기준이며, 에이전트 간 수치 편차(원/달러 등)는 평균 없이 출처 병기.</p>
+    <p class="src">주요 출처: 연준 H.15·FRED · NY Fed ACM 텀프리미엄 · TIPSWatch · CME FedWatch · 한국은행 스냅샷 · 국내 증시 보강(파이낸셜뉴스·뉴시스·머니투데이 등)</p>
+    <div class="disc">
+      <b>면책:</b> 본 보고서는 정보 제공·교육 목적의 분석이며 투자 권유·금융 자문이 아닙니다. 언급된 특정 종목(삼성전자·SK하이닉스 등)·업종은 전이 경로·집중도·업종 차별화를 설명하기 위한 예시이며 매수·매도 권유가 아닙니다. 시나리오·확률·임계 수준은 작성 시점(2026-06-03)의 공개 데이터에 기반한 추정으로 실제 시장과 다를 수 있으며, 투자 판단과 그 결과의 책임은 투자자 본인에게 있습니다.
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+  Generated by 하네스 B — <code>treasury-kospi-impact-orchestrator</code> · 채권·환율·지정학유가·국내증시 4인 에이전트 팀<br/>
+  © 2026 · 정보·교육 목적 · GitHub Pages 자동 배포
+</div></footer>
+</body>
+</html>
